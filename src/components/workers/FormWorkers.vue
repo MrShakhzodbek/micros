@@ -77,9 +77,7 @@ import type { Category } from '@/models/types';
 import { categoryStore } from '@/stores/category';
 
 
-const props = defineProps({
-  id: Number
-});
+const props = defineProps(['id']);
 
 const emit = ​defineEmits(['edit']);
 

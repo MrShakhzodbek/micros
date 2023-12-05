@@ -11,8 +11,8 @@ export interface Category {
 export interface Documents {
     id?: number;
     typeDocument: string; 
-    numberDocument: string; 
-    dateDocument: Date; 
+    numberDocument: string | number; 
+    dateDocument: Date | string; 
     description: string | number | undefined; 
     typeInvoices: string | undefined; 
     name: string;
