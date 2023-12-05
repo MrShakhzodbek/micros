@@ -60,8 +60,8 @@
                     </el-form-item>
                 </el-col>
             </el-row>
-            <el-row :gutter="30">
-                <el-col :span="24" text-end>
+            <el-row :gutter="30" >
+                <el-col :span="24" text-end align="right">
                     <el-button type="primary" @click="submitForm">Create</el-button>
                 </el-col>
             </el-row>
@@ -71,23 +71,33 @@
 
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
 import type { Category } from '@/models/types';
 import { categoryStore } from '@/stores/category';
 
+
+const props = defineProps({
+  id: Number
+});
+
+const emit = ​defineEmits(['edit']);
+
 const store = categoryStore();
-const { add_category } = store;
+const { add_category, get_category, save_category } = store;
 const categoryForm = ref<FormInstance>();
 const category = ref<Category>({
     name: '',
     surname: '',
     dateBirthday: '',
     passportSeria: '',
-    passportNumber: null,
-    gender: false,
-    checkbox: {}
+    passportNumber: undefined,
+    gender: '',
+    checkbox: []
 });
+
+const toggle = ref<boolean>(false)
+
 
 const rules = ref<FormRules>({
     name: [{ required: true, message: 'Please input the name', trigger: 'blur' }],
@@ -103,15 +113,56 @@ const submitForm = async () => {
     const form = categoryForm.value;
     if (!form) return;
 
-    form.validate((valid) => {
+    form.validate(async (valid) => {
         if (valid) {
-            add_category(category.value);
+            if (toggle.value) {
+                await save_category(category.value);
+                emit('edit', category.value.id);
+            } else {
+                await add_category(category.value);
+            }
             form.resetFields();
+            toggle.value = false;
         } else {
             console.error('Error submitting form');
         }
     });
 };
+
+
+
+watch(() => props.id, async (val:number)=>{
+    if(val === 0) return
+    console.log('FormWorkers',val)
+    let result = await get_category(val)
+    if(result.status === 200){
+        category.value = {...result.data}
+        toggle.value = true
+    }
+})
+
+// watch(() => props.id, async (newId) => {
+//     if (newId && newId !== 0) {
+//         const { data, status } = await get_category(newId);
+//         if (status === 200) {
+//             category.value = data;
+//             toggle.value = true;
+//         }
+//     } else {
+//         // Reset form for adding new category
+//         category.value = {
+//             name: '',
+//             surname: '',
+//             dateBirthday: '',
+//             passportSeria: '',
+//             passportNumber: undefined,
+//             gender: false,
+//             checkbox: []
+//         };
+//         toggle.value = false;
+//     }
+// });
+
 </script>
 
 

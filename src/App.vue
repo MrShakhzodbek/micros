@@ -10,11 +10,11 @@ import { RouterLink, RouterView } from 'vue-router'
     </div>
     <main>
       <nav>
-        <RouterLink to="/"><el-button style="width: 100%; padding: 20px;" type="primary"><el-icon
+        <RouterLink to="/"><el-button style="width: 100%; padding: 20px; font-size: 20px;" type="primary"><el-icon
               style="margin-right: 10px;">
               <HomeFilled />
-            </el-icon>Workers</el-button></RouterLink>
-        <RouterLink to="/document"><el-button style="width: 100%; padding: 20px;" type="primary"><el-icon
+            </el-icon >Workers</el-button></RouterLink>
+        <RouterLink to="/document"><el-button style="width: 100%; padding: 20px; font-size: 20px;" type="primary"><el-icon
               style="margin-right: 10px;">
               <Document />
             </el-icon>Documents</el-button></RouterLink>
@@ -67,6 +67,7 @@ header {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      
     }
 
     .main {

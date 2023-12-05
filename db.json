@@ -1,0 +1,29 @@
+{
+  "workers": [
+    {
+      "name": "Salom",
+      "surname": "Valiyev",
+      "dateBirthday": "2023-12-10T19:00:00.000Z",
+      "passportSeria": "AB",
+      "passportNumber": "9876543",
+      "gender": true,
+      "checkbox": [
+        "Active"
+      ],
+      "id": 1
+    },
+    {
+      "name": "Aziza",
+      "surname": "Karimova",
+      "dateBirthday": "2023-12-20T19:00:00.000Z",
+      "passportSeria": "AB",
+      "passportNumber": "9876543",
+      "gender": false,
+      "checkbox": [
+        "Passive"
+      ],
+      "id": 2
+    }
+  ],
+  "documents": []
+}

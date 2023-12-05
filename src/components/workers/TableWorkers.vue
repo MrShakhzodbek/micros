@@ -6,8 +6,15 @@
                 <el-table-column label="#" type="index" />
                 <el-table-column label="Имя" prop="name" />
                 <el-table-column label="Фамилия" prop="surname" />
-                <el-table-column label="Дата рождения" prop="dateBirthday" />
-                <el-table-column label="Паспорт" prop="passportSeria" />
+                <el-table-column label="Дата рождения" prop="dateBirthday">
+                    <template #default="scope">
+                        <div>
+                            {{ new Date(scope.row.dateBirthday).toDateString() }}
+                        </div>
+                    </template>
+                </el-table-column>
+                <el-table-column label="Серия паспорта" prop="passportSeria" />
+                <el-table-column label="Номер паспорта" prop="passportNumber" />
                 <el-table-column label="Активность" prop="checkbox" />
                 <el-table-column label="Пол" prop="gender">
                     <template #default="scope">
@@ -18,18 +25,15 @@
                 </el-table-column>
                 <el-table-column align="right">
                     <template #header>
-                        <el-input v-model="search" size="large" placeholder="Type to search" />
+                        <el-input style="width: 100%;" v-model="search" size="large" placeholder="Type to search" />
                     </template>
-                    <template #default="scope">
-                        <el-button size="small" type="warning" @click="">Edit</el-button>
-                        <el-popconfirm 
-                            title="Вы уверены, что хотите удалить этого сотрудника?"
-                            confirm-button-text="Да"
-                            cancel-button-text="Нет"
-                            @confirm="removeCategory(scope.row.id)"
-                        >
+                    <template #default="scope" width="100%">
+                        <el-button size="small" @click="editCategory(scope.row.id)">Edit</el-button>
+                        <el-popconfirm title="Вы уверены?" confirm-button-text="Да"
+                            cancel-button-text="Нет" @confirm="removeCategory(scope.row.id)">
                             <template #reference>
-                                <el-button size="small" type="danger">Delete</el-button>
+                                
+                                <el-button size="default" type="danger"><el-icon style="margin-right: 10px;"><Delete /></el-icon>Delete</el-button>
                             </template>
                         </el-popconfirm>
                     </template>
@@ -43,6 +47,14 @@
 import { categoryStore } from '@/stores/category'
 import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue'
+const emit = ​defineEmits(['edit']);
+
+const editCategory = (id:number)=>{ 
+    emit('edit', id)
+}
+
+
+
 
 const store = categoryStore()
 const { remove_category } = store
@@ -65,6 +77,8 @@ const filterTableData = computed(() =>
             data.passportSeria.toLowerCase().includes(search.value.toLowerCase())
     )
 )
+
+
 </script>
 
 <style lang="scss" scoped>

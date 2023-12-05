@@ -45,7 +45,7 @@ export const categoryStore = defineStore('categories', () => {
       if (result.status === 200) {
         categories.value = categories.value.filter((category: Category) => category.id !== id);
         ElMessage({
-          type:'warning',
+          type: 'warning',
           message: "Информация удалена"
         })
       }
@@ -55,11 +55,43 @@ export const categoryStore = defineStore('categories', () => {
     }
   };
 
+  const toggle_category = async (category: Category): Promise<void> => {
+    try {
+      await save_category(category);
+    } catch (error) {
+      console.error('Error toggling category:', error);
+    }
+  }
+
+  const save_category = async (category: Category): Promise<void> => {
+    try {
+      const { data, status } = await axios.put(`${url}/${slug.value}/${category.id}`, category);
+      if (status === 200) {
+        categories.value = categories.value.map(cat => cat.id === category.id ? data : cat);
+        ElMessage({ type: 'success', message: 'Обновить информацию' });
+      }
+    } catch (error) {
+      console.error('Error saving category:', error);
+    }
+  }
+
+  const get_category = async (id: number) => {
+    try {
+      const response = await axios.get(`${url}/${slug.value}/${id}`);
+      return response;
+    } catch (error) {
+      console.error('Error fetching category:', error);
+    }
+  }
+
   return {
     categories,
 
     all_category,
     add_category,
-    remove_category
+    remove_category,
+    get_category,
+    toggle_category,
+    save_category
   }
 })
