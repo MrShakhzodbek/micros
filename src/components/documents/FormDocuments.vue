@@ -74,15 +74,14 @@ import { ref, watch } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
 import type { Documents } from '@/models/types';
 import { documentsStore } from '@/stores/documents';
-// import { documents } from '@/stores/category';
 
 
-// const props = defineProps({
-//   id: Number
-// });
+interface Props{
+    id:number
+}
 
-// const emit = ​defineEmits(['edit']);
-
+const props = defineProps<Props>();
+const emit = defineEmits(['edit']);
 const store = documentsStore();
 const { add_document, get_document, save_document } = store;
 const documentForm = ref<FormInstance>();
@@ -120,7 +119,7 @@ const submitForm = async () => {
         if (valid) {
             if (toggle.value) {
                 await save_document(document.value);
-                // emit('edit', category.value.id);
+                emit('edit', document.value.id)
             } else {
                 await add_document(document.value);
             }
@@ -132,39 +131,17 @@ const submitForm = async () => {
     });
 };
 
+watch(() => props.id, async (val: number) => {
+    if (val === 0) return;
+    console.log('FormDocuments', val);
+    let result = await get_document(val);
+    if (result.status === 200) {
+        document.value = { ...result.data };
+        toggle.value = true;
+    }
+});
 
 
-// watch(() => props.id, async (val:number)=>{
-//     if(val === 0) return
-//     console.log('FormWorkers',val)
-//     let result = await get_category(val)
-//     if(result.status === 200){
-//         category.value = {...result.data}
-//         toggle.value = true
-//     }
-// })
-
-// watch(() => props.id, async (newId) => {
-//     if (newId && newId !== 0) {
-//         const { data, status } = await get_category(newId);
-//         if (status === 200) {
-//             category.value = data;
-//             toggle.value = true;
-//         }
-//     } else {
-//         // Reset form for adding new category
-//         category.value = {
-//             name: '',
-//             surname: '',
-//             dateBirthday: '',
-//             passportSeria: '',
-//             passportNumber: undefined,
-//             gender: false,
-//             checkbox: []
-//         };
-//         toggle.value = false;
-//     }
-// });
 
 </script>
 

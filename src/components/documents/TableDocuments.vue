@@ -23,14 +23,11 @@
                         <el-input style="width: 100%;" v-model="search" size="large" placeholder="Type to search" />
                     </template>
                     <template #default="scope" width="100%">
-                        <el-button size="small" @click="editDocument(scope.row.id)">Edit</el-button>
+                        <el-button style="font-size: 13px;" size="small" @click="editDocument(scope.row.id)">Edit</el-button>
                         <el-popconfirm title="Вы уверены?" confirm-button-text="Да" cancel-button-text="Нет"
                             @confirm="removeDocument(scope.row.id)">
                             <template #reference>
-
-                                <el-button size="small" type="danger"><el-icon style="margin-right: 10px;">
-                                        <Delete />
-                                    </el-icon>Delete</el-button>
+                                <el-button style="font-size: 13px;" size="small" type="danger">Delete</el-button>
                             </template>
                         </el-popconfirm>
                     </template>
@@ -44,11 +41,13 @@
 import { documentsStore } from '@/stores/documents'
 import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue'
-const emit = ​defineEmits(['edit']);
 
-const editCategory = (id:number)=>{ 
+const emit = defineEmits(['edit']);
+
+const editDocument = (id: number): void => {
     emit('edit', id)
 }
+
 
 
 
@@ -75,7 +74,6 @@ const filterTableData = computed(() =>
             
     )
 )
-
 
 </script>
 

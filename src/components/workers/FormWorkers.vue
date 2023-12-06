@@ -76,11 +76,12 @@ import type { FormInstance, FormRules } from 'element-plus';
 import type { Category } from '@/models/types';
 import { categoryStore } from '@/stores/category';
 
+interface Props{
+    id:number
+}
 
-const props = defineProps(['id']);
-
-const emit = ​defineEmits(['edit']);
-
+const props = defineProps<Props>();
+const emit = defineEmits(['edit']);
 const store = categoryStore();
 const { add_category, get_category, save_category } = store;
 const categoryForm = ref<FormInstance>();
@@ -139,27 +140,6 @@ watch(() => props.id, async (val:number)=>{
     }
 })
 
-// watch(() => props.id, async (newId) => {
-//     if (newId && newId !== 0) {
-//         const { data, status } = await get_category(newId);
-//         if (status === 200) {
-//             category.value = data;
-//             toggle.value = true;
-//         }
-//     } else {
-//         // Reset form for adding new category
-//         category.value = {
-//             name: '',
-//             surname: '',
-//             dateBirthday: '',
-//             passportSeria: '',
-//             passportNumber: undefined,
-//             gender: false,
-//             checkbox: []
-//         };
-//         toggle.value = false;
-//     }
-// });
 
 </script>
 

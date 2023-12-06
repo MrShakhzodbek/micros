@@ -32,7 +32,7 @@ header {
   flex-direction: column;
   gap: 10px;
   background: rgba(72, 69, 71, 0.11);
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px 50px 10px;
 
   .navbar {

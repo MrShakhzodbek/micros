@@ -28,18 +28,19 @@
                         <el-input style="width: 100%;" v-model="search" size="large" placeholder="Type to search" />
                     </template>
                     <template #default="scope" width="100%">
-                        <el-button size="small" @click="editCategory(scope.row.id)">Edit</el-button>
-                        <el-popconfirm title="Вы уверены?" confirm-button-text="Да"
-                            cancel-button-text="Нет" @confirm="removeCategory(scope.row.id)">
+                        <el-button style="font-size: 13px;" type="success" size="small"
+                            @click="editCategory(scope.row.id)">Edit</el-button>
+                        <el-popconfirm title="Вы уверены?" confirm-button-text="Да" cancel-button-text="Нет"
+                            @confirm="removeCategory(scope.row.id)">
                             <template #reference>
-                                
-                                <el-button size="small" type="danger"><el-icon style="margin-right: 10px;"><Delete /></el-icon>Delete</el-button>
+                                <el-button style="font-size: 13px;" size="small" type="danger">Delete</el-button>
                             </template>
                         </el-popconfirm>
                     </template>
                 </el-table-column>
             </el-table>
         </el-row>
+
     </div>
 </template>
 
@@ -47,9 +48,11 @@
 import { categoryStore } from '@/stores/category'
 import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue'
-const emit = ​defineEmits(['edit']);
 
-const editCategory = (id:number)=>{ 
+const emit = defineEmits(['edit'])
+
+
+const editCategory = (id: number): void => {
     emit('edit', id)
 }
 

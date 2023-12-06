@@ -1,28 +1,64 @@
 {
   "workers": [
     {
-      "name": "Salom",
-      "surname": "Valiyev",
-      "dateBirthday": "2023-12-10T19:00:00.000Z",
-      "passportSeria": "AB",
-      "passportNumber": "9876543",
+      "name": "QSWYDQWY",
+      "surname": "BUIBIUSCBUIBCUI",
+      "dateBirthday": "2023-12-15T19:00:00.000Z",
+      "passportSeria": "AA",
+      "passportNumber": "12345678",
       "gender": true,
       "checkbox": [
         "Active"
       ],
-      "id": 1
+      "id": 9
     },
     {
-      "name": "Aziza",
-      "surname": "Karimova",
-      "dateBirthday": "2023-12-20T19:00:00.000Z",
-      "passportSeria": "AB",
-      "passportNumber": "9876543",
+      "name": "QWDQWDBQW",
+      "surname": "UBUBUSYBQDUY",
+      "dateBirthday": "2023-12-12T19:00:00.000Z",
+      "passportSeria": "AA",
+      "passportNumber": "12345678",
+      "gender": true,
+      "checkbox": [
+        "Passive"
+      ],
+      "id": 10
+    },
+    {
+      "name": "QDUBDUBBU",
+      "surname": "INIUSNCQU",
+      "dateBirthday": "2023-12-15T19:00:00.000Z",
+      "passportSeria": "AA",
+      "passportNumber": "12345678",
       "gender": false,
       "checkbox": [
         "Passive"
       ],
-      "id": 2
+      "id": 11
+    },
+    {
+      "name": "QWDQWDUQHWU",
+      "surname": "UHNUIHUU",
+      "dateBirthday": "2023-12-03T19:00:00.000Z",
+      "passportSeria": "AA",
+      "passportNumber": "12345678",
+      "gender": true,
+      "checkbox": [
+        "Passive"
+      ],
+      "id": 12
+    },
+    {
+      "name": "WQDWEDWEU",
+      "surname": "UINUINUINWUFN",
+      "dateBirthday": "2023-12-12T19:00:00.000Z",
+      "passportSeria": "AA",
+      "passportNumber": "12345678",
+      "gender": true,
+      "checkbox": [
+        "Passive"
+      ],
+      "id": 13
     }
   ],
   "documents": []
